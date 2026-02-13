@@ -1,0 +1,148 @@
+@import url("http://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins";
+}
+
+body {
+    /*表示元素的最小高度为当前浏览器可视窗口高度的100%*/
+    min-height: 100vh;
+    /*设为弹性项目，可通过弹性盒属性,适用于响应式布局，快速实现子元素水平或垂直居中*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #161626;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#2193b0, #6dd5ed);
+    /*剪切图形 30%为圆型的直径 at 在 从左到右100%处 的从上到下70%处*/
+    clip-path: circle(30% at 100% 70%);
+}
+
+body::after {
+    /*content 伪元素的必要属性，定义为空内容，，仅作为装饰容器*/
+    content: "";
+    /*脱离文档流 相对于视口定位*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /*定义图形渐变色*/
+    background: linear-gradient(#ee9ca7, #ffdde1);
+    /*剪切图形 20%为圆型的直径 at 在 从左到右10%处 的从上到下10%处*/
+    clip-path: circle(20% at 10% 10%);
+}
+
+.container {
+    /*相对定位元素 其内部的绝对定位子元素 如（伪元素，子标签），会以他为基准进行定位
+    场景：用于作为容器，控制内部元素的布局层级*/
+    position: relative;
+    /*将其作为弹性容器其子元素会成为弹性项目，可通过弹性盒属性
+    场景：用于响应式布局快速实现子元素的水平或垂直居中，分布式布局等（默认子元素水平居中）*/
+    display: flex;
+    /*水平*/
+    justify-content: center;
+    /*垂直*/
+    align-items: center;
+    /*当弹性容器内的子元素总宽度超过容器宽度时，自动换行显示，避免溢出容器*/
+    flex-wrap: wrap;
+    /*控制元素的层级优先，数值越大，元素在视觉上越靠上层（仅对position为relative/
+    absolute/fixed/sticky的元素生效）这里的意思是显示层级在低于1的元素之上*/
+    z-index: 1;
+    background-color: ;
+}
+
+.card {
+    /*相对定位元素 其内部的绝对定位子元素 如（伪元素，子标签），会以他为基准进行定位
+    场景：用于作为容器，控制内部元素的布局层级*/
+    position: relative;
+    width: 280px;
+    height: 400px;
+    /*rgba里的0.1为透明度*/
+    background-color: rgba(255, 255, 255, 0.1);
+    /*边距30px*/
+    margin: 30px;
+    /*设置图形边角圆角，切多圆*/
+    border-radius: 15px;
+    /*增加深色阴影，增加立体感 box-shadow：水平偏移量 垂直偏移量 模糊半径 阴影大小 阴影颜色 （最后两个可选）
+    第一个表阴影向元素的右侧偏移20px，第二个表阴影向下方偏移20px 50px为阴影的模糊半径越大越模糊*/
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+    /*隐藏卡片内部超出宽高的内容*/
+    overflow: hidden;
+    /*布局*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*实线边框 0.5 白色实线半透明*/
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    /*毛玻璃核心属性 对卡片后方内容进行模糊处理（需要配合半透明背景生效）*/
+    backdrop-filter: blur(5px);
+}
+
+.content {
+    background-color: #911a1a00;
+}
+
+.container .card .content {
+    padding: 20px;
+    text-align: center;
+    /*设置默认下移+隐藏+时间*/
+    transform: translateY(100px);
+    opacity: 0;
+    transition: 0.5s;
+}
+
+/*当鼠标位于div card上方时Y轴0px=上移 不隐藏*/
+.container .card:hover .content {
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+.container .card .content h2 {
+    position: absolute;
+    top: -80px;
+    right: 30px;
+    font-size: 128px;
+    color: rgba(255, 255, 255, 0.05);
+
+}
+
+.container .card .content h3 {
+    font-size: 28px;
+    color: #fff;
+
+}
+
+.container .card .content p {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 300;
+    margin: 20px 0 15px 0;
+}
+
+.container .card .content a {
+    position: relative;
+    /*行内块级元素*/
+    display: inline-block;
+    padding: 8px 20px;
+    margin-top: 15px;
+    background-color: #fff;
+    color: #000;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: 500;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}

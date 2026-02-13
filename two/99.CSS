@@ -1,0 +1,172 @@
+/* 弹窗背景 */
+.login-mask {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: #00000057;
+    /* 透明度 */
+    opacity: 0.5;
+    display: none;
+    z-index: 9998;
+}
+
+/* 弹窗div */
+.login-panel {
+    position: fixed;
+    width: 60%;
+    height: 60%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff00;
+    padding: 30px;
+    border-radius: 8px;
+    display: none;
+    z-index: 9999;
+}
+
+/* 弹窗关闭按钮 */
+.login-close {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    cursor: pointer;
+    font-size: 50px;
+}
+
+.login-close:hover {
+    transform: scale(1.1);
+    transition: 0.6S;
+}
+
+.login-close {
+    transition: transform 0.5S ease;
+}
+
+/* From Uiverse.io by Spacious74 */
+.container {
+    border: solid 1px #8d8d8d;
+    padding: 50px;
+    border-radius: 20px;
+    background-color: #fff;
+}
+
+.container .heading {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    font-weight: bolder;
+}
+
+.form {
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.form .btn-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.form .btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 15px;
+    border-radius: 10px;
+    border: solid 1px #1034aa;
+    border-bottom: solid 1px #90c2ff;
+    background: linear-gradient(135deg, #0034de, #006eff);
+    color: #fff;
+    font-weight: bolder;
+    transition: all 0.2s ease;
+    box-shadow: 0px 2px 3px #000d3848, inset 0px 4px 5px #0070f0,
+        inset 0px -4px 5px #002cbb;
+}
+
+
+.form .btn:active {
+    box-shadow: inset 0px 4px 5px #0070f0, inset 0px -4px 5px #002cbb;
+    transform: scale(0.995);
+}
+
+.input-field {
+    position: relative;
+}
+
+.input-field label {
+    position: absolute;
+    color: #8d8d8d;
+    pointer-events: none;
+    background-color: transparent;
+    left: 15px;
+    transform: translateY(0.6rem);
+    transition: all 0.3s ease;
+}
+
+.input-field input {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: solid 1px #8d8d8d;
+    letter-spacing: 1px;
+    width: 100%;
+}
+
+.input-field input:focus,
+.input-field input:valid {
+    outline: none;
+    border: solid 1px #0034de;
+}
+
+.input-field input:focus~label,
+.input-field input:valid~label {
+    transform: translateY(-51%) translateX(-10px) scale(0.8);
+    background-color: #fff;
+    padding: 0px 5px;
+    color: #0034de;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 100px;
+}
+
+.form .passicon {
+    cursor: pointer;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 6px;
+    right: 8px;
+}
+
+.form .close {
+    display: none;
+}
+
+.ss3 {
+    margin-top: 3px;
+    margin-left: 45px;
+    width: 100px;
+    height: 45px;
+    background-color: #ffffffd6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    box-shadow: 2px 1px 4px rgb(81, 81, 81);
+}
+
+.ss3:hover {
+    background-color: #aeaeae;
+    transform: scale(1.1);
+    transition: 0.6s;
+}
+
+.ss3 {
+    transition: transform 0.5s ease;
+}
