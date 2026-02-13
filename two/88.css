@@ -1321,7 +1321,7 @@ a:active {
     width: 20px;
     height: 320px;
     background-color: rgb(225, 225, 225);
-    margin-left: 818px;
+    margin-left: 50%vw;
     border-radius: 30px;
     box-shadow: 6px 6px 5px rgba(0, 0, 0, 0.75);
 }
@@ -1359,4 +1359,5 @@ a:active {
     margin-top: 930px;
     margin-left: 10px;
     border-radius: 30px;
+
 }
