@@ -1,0 +1,32 @@
+/* CSS Variables for Auth System */
+:root {
+  --coral: #ff6b6b;
+  --coral-glow: rgba(255, 107, 107, .35);
+  --purple: #7c5ce7;
+  --purple-glow: rgba(124, 92, 231, .35);
+  --teal: #4ecdc4;
+  --teal-glow: rgba(78, 205, 196, .25);
+  --blue: #5b9bd5;
+  --text: #f0f0f5;
+  --text2: rgba(240, 240, 245, .7);
+  --text3: rgba(240, 240, 245, .45);
+  --glass: rgba(255, 255, 255, .055);
+  --glass-hover: rgba(255, 255, 255, .09);
+  --glass-border: rgba(255, 255, 255, .1);
+  --radius: 18px;
+  --radius-sm: 10px;
+  --font: "Segoe UI", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --ease: cubic-bezier(.4, 0, .2, 1);
+}
+
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@keyframes ringSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

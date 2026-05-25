@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="一个简约的个人博客，记录思考和笔记。">
+  <title>我的博客</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth-vars.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="site-brand" href="index.html">My Blog</a>
+      <nav class="site-nav-wrap" aria-label="主导航">
+        <ul class="site-nav">
+          <li><a href="index.html">首页</a></li>
+          <li><a href="code.html">主页面</a></li>
+          <li><a href="video.html">视频</a></li>
+          <li><a href="about.html">关于</a></li>
+        </ul>
+        <a class="nav-auth" id="navAuthLink" href="javascript:void(0)">
+          <span class="nav-login-avatar" id="navLoginAvatar">JG</span>
+          <span class="nav-login-text" id="navLoginText">登录</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1 class="hero-title">我的<span>博客</span></h1>
+      <p class="hero-subtitle">记录思考、技术与生活。不赶时间，慢慢写。</p>
+    </section>
+
+    <section class="article-list">
+      <div class="container" id="article-list">
+        <!-- JS 动态渲染 -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 My Blog. 简单记录，安静写字。</p>
+  </footer>
+
+  <div class="login-overlay" id="loginOverlay" aria-hidden="true">
+    <div class="login-modal" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+      <div class="login-header" id="loginDragHandle">
+        <div class="login-title-wrap">
+          <div class="login-logo">✦</div>
+          <div class="login-title">
+            <h3 id="loginTitle">登录工作台</h3>
+            <p>Glass Auth Panel · Ready for backend</p>
+          </div>
+        </div>
+        <div class="login-actions">
+          <button class="login-mini" type="button" id="loginMiniBtn" aria-label="最小化">—</button>
+          <button class="login-close" type="button" id="loginCloseBtn" aria-label="关闭">✕</button>
+        </div>
+      </div>
+      <div class="login-body">
+        <div class="login-tabs" role="tablist" aria-label="登录方式切换">
+          <button class="login-tab active" type="button" data-panel="passwordPanel" aria-selected="true">密码登录</button>
+          <button class="login-tab" type="button" data-panel="quickPanel" aria-selected="false">快捷登录</button>
+        </div>
+
+        <div class="login-panel active" id="passwordPanel">
+          <div class="login-field">
+            <label for="loginAccount">账号 <small>邮箱 / 用户名</small></label>
+            <div class="login-input-wrap">
+              <input class="login-input" id="loginAccount" type="text" placeholder="请输入邮箱或用户名">
+            </div>
+          </div>
+          <div class="login-field">
+            <label for="loginPassword">密码 <small>后续可接后端鉴权</small></label>
+            <div class="login-input-wrap">
+              <input class="login-input" id="loginPassword" type="password" placeholder="请输入密码">
+              <button class="password-toggle" type="button" id="passwordToggleBtn" aria-label="切换密码可见性">👁</button>
+            </div>
+          </div>
+          <div class="login-meta">
+            <label class="login-check"><input type="checkbox" id="rememberMeCheck" checked> 记住我</label>
+            <a href="#" class="login-link">忘记密码？</a>
+          </div>
+          <button class="login-submit" type="button" id="loginSubmitBtn">进入控制台</button>
+          <div class="login-hint" style="margin-top:10px;">
+            演示账号：<strong>admin</strong> / 演示密码：<strong>123456</strong>
+          </div>
+        </div>
+
+        <div class="login-panel" id="quickPanel">
+          <div class="login-field">
+            <label for="loginPhone">手机号 <small>验证码登录</small></label>
+            <div class="login-input-wrap">
+              <input class="login-input" id="loginPhone" type="tel" placeholder="请输入手机号">
+            </div>
+          </div>
+          <div class="login-field">
+            <label for="loginCode">验证码 <small>演示按钮</small></label>
+            <div class="login-field-row">
+              <input class="login-input" id="loginCode" type="text" placeholder="输入 6 位验证码">
+              <button class="verify-btn" type="button" id="verifyBtn">获取验证码</button>
+            </div>
+          </div>
+          <div class="login-meta">
+            <span>未接后端，当前为 UI 演示版</span>
+            <a href="#" class="login-link">服务条款</a>
+          </div>
+          <button class="login-submit" type="button" id="quickLoginBtn">快捷进入</button>
+        </div>
+
+        <div class="login-footer">
+          <span class="social-dot"></span>
+          <span>后续可扩展 JWT / Session / OAuth / 第三方登录</span>
+        </div>
+        <div class="login-hint">
+          提示：这个登录窗已经预留了多种扩展入口，后续你接后端时，只需要把按钮事件替换成真正的 API 调用即可。
+        </div>
+      </div>
+      <div class="login-toast" id="loginToast">演示模式：当前仅展示 UI 与交互效果，后续可无缝接入后端登录接口。</div>
+    </div>
+  </div>
+
+  <div class="profile-overlay" id="profileOverlay" aria-hidden="true">
+    <div class="profile-modal" id="profileModal" role="dialog" aria-modal="true" aria-labelledby="profileTitle">
+      <div class="profile-theme-flash" id="profileThemeFlash"></div>
+      <div class="profile-header" id="profileDragHandle">
+        <div class="profile-title-wrap">
+          <div class="profile-logo">✦</div>
+          <div class="profile-title">
+            <h3 id="profileTitle">个人信息中心</h3>
+            <p>Profile Studio · Live Preview</p>
+          </div>
+        </div>
+        <div class="profile-actions-top">
+          <button class="profile-top-btn" type="button" id="profileResetBtn" aria-label="重置资料">↺</button>
+          <button class="profile-top-btn profile-top-btn-close" type="button" id="profileCloseBtn" aria-label="关闭">✕</button>
+        </div>
+      </div>
+
+      <div class="profile-body">
+        <aside class="profile-sidebar">
+          <div class="profile-hero-card glass" id="profileHeroCard">
+            <div class="profile-avatar-stage" id="profileAvatarStage">
+              <div class="profile-avatar-ring"></div>
+              <div class="profile-avatar-core" id="profileAvatarCore">JG</div>
+            </div>
+            <strong class="profile-hero-name" id="profileHeroName">未登录</strong>
+            <p class="profile-hero-role" id="profileHeroRole">演示身份</p>
+            <p class="profile-hero-bio" id="profileHeroBio">登录后可编辑你的昵称、简介、头像风格与个性化主题。</p>
+            <div class="profile-hero-tags">
+              <span class="profile-chip profile-chip-live" id="profileHeroStatus">在线</span>
+              <span class="profile-chip" id="profileHeroAccent">紫色主题</span>
+            </div>
+          </div>
+
+          <div class="profile-sidebar-note">
+            所有修改仅保存在当前浏览器的本地演示登录态中，不会提交到服务器。
+          </div>
+        </aside>
+
+        <section class="profile-main">
+          <div class="profile-tabs" role="tablist" aria-label="个人信息设置">
+            <button class="profile-tab active" type="button" data-profile-panel="profileBasicPanel" aria-selected="true">基础资料</button>
+            <button class="profile-tab" type="button" data-profile-panel="profileAvatarPanel" aria-selected="false">头像修改</button>
+            <button class="profile-tab" type="button" data-profile-panel="profileThemePanel" aria-selected="false">主题外观</button>
+            <button class="profile-tab" type="button" data-profile-panel="profileSecurityPanel" aria-selected="false">账号安全</button>
+          </div>
+
+          <div class="profile-panel active" id="profileBasicPanel">
+            <div class="profile-section-grid">
+              <div class="profile-field">
+                <label for="profileNameInput">昵称 <small>导航栏与预览卡片同步更新</small></label>
+                <input class="profile-input" id="profileNameInput" type="text" maxlength="18" placeholder="输入昵称">
+              </div>
+              <div class="profile-field">
+                <label for="profileRoleInput">展示身份 <small>例如：AI 开发者</small></label>
+                <input class="profile-input" id="profileRoleInput" type="text" maxlength="28" placeholder="输入展示身份">
+              </div>
+            </div>
+            <div class="profile-field">
+              <label for="profileMottoInput">个性签名 <small>显示在悬停卡片里</small></label>
+              <input class="profile-input" id="profileMottoInput" type="text" maxlength="36" placeholder="一句简短签名">
+            </div>
+            <div class="profile-field">
+              <label for="profileBioInput">个人简介 <small>显示在资料中心概览区</small></label>
+              <textarea class="profile-textarea" id="profileBioInput" rows="4" maxlength="120" placeholder="写一点你的介绍"></textarea>
+            </div>
+            <div class="profile-inline-actions">
+              <button class="profile-cta-btn profile-cta-primary" type="button" id="profileSaveBasicBtn">保存基础资料</button>
+            </div>
+          </div>
+
+          <div class="profile-panel" id="profileAvatarPanel">
+            <div class="profile-field">
+              <label>头像风格 <small>选择后立即预览，并保存到当前登录态</small></label>
+              <div class="avatar-style-grid" id="avatarStyleGrid">
+                <button class="avatar-style-card" type="button" data-avatar-mode="gradient"><span>渐变</span><strong>JG</strong></button>
+                <button class="avatar-style-card" type="button" data-avatar-mode="soft"><span>柔光</span><strong>JG</strong></button>
+                <button class="avatar-style-card" type="button" data-avatar-mode="neon"><span>霓虹</span><strong>JG</strong></button>
+                <button class="avatar-style-card" type="button" data-avatar-mode="mono"><span>极简</span><strong>JG</strong></button>
+              </div>
+            </div>
+            <div class="profile-field">
+              <label for="profileAvatarUpload">自定义头像图片 <small>仅本地预览，不上传服务器</small></label>
+              <label class="profile-upload" for="profileAvatarUpload">
+                <span>选择图片文件</span>
+                <small>支持常见图片格式</small>
+              </label>
+              <input id="profileAvatarUpload" type="file" accept="image/*" hidden>
+            </div>
+            <div class="profile-inline-actions">
+              <button class="profile-cta-btn profile-cta-primary" type="button" id="profileSaveAvatarBtn">保存头像样式</button>
+            </div>
+            <div class="profile-upload-note" id="profileUploadNote">上传图片后会先进入裁剪器，再生成头像预览。</div>
+          </div>
+
+          <div class="profile-panel" id="profileThemePanel">
+            <div class="profile-field">
+              <label>主题强调色 <small>只影响个人资料中心与登录状态组件</small></label>
+              <div class="theme-swatch-row" id="themeSwatchRow">
+                <button class="theme-swatch" type="button" data-theme-accent="purple"><span></span><strong>紫色</strong></button>
+                <button class="theme-swatch" type="button" data-theme-accent="coral"><span></span><strong>珊瑚</strong></button>
+                <button class="theme-swatch" type="button" data-theme-accent="teal"><span></span><strong>青色</strong></button>
+              </div>
+            </div>
+            <div class="profile-field">
+              <label for="profileMotionRange">动效强度 <small>调整 hover / glow 的视觉力度</small></label>
+              <input class="profile-range" id="profileMotionRange" type="range" min="0" max="100" step="1">
+              <div class="profile-range-meta">
+                <span>低</span>
+                <strong id="profileMotionValue">70%</strong>
+                <span>高</span>
+              </div>
+            </div>
+            <div class="profile-inline-actions">
+              <button class="profile-cta-btn profile-cta-primary" type="button" id="profileSaveThemeBtn">保存外观设置</button>
+            </div>
+          </div>
+
+          <div class="profile-panel" id="profileSecurityPanel">
+            <div class="profile-security-card">
+              <div>
+                <strong>修改密码</strong>
+                <p>当前为前端演示版，可展示交互但不接真实后端。</p>
+              </div>
+              <button class="profile-cta-btn profile-cta-ghost" type="button" id="profilePasswordBtn">修改密码</button>
+            </div>
+            <div class="profile-security-card">
+              <div>
+                <strong>记住当前会话</strong>
+                <p>继续复用现有"记住我"逻辑，保存本地登录状态。</p>
+              </div>
+              <button class="profile-cta-btn profile-cta-ghost" type="button" id="profileRememberBtn">查看状态</button>
+            </div>
+            <div class="profile-security-card danger">
+              <div>
+                <strong>退出登录</strong>
+                <p>清除本地演示登录态，并恢复默认的登录入口。</p>
+              </div>
+              <button class="profile-cta-btn profile-cta-danger" type="button" id="profileLogoutBtn">退出登录</button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="profile-toast" id="profileToast">资料已更新。</div>
+    </div>
+  </div>
+
+  <div class="avatar-cropper-overlay" id="avatarCropperOverlay" aria-hidden="true">
+    <div class="avatar-cropper-modal" id="avatarCropperModal" role="dialog" aria-modal="true" aria-labelledby="avatarCropperTitle">
+      <div class="avatar-cropper-header">
+        <div>
+          <h3 id="avatarCropperTitle">头像裁剪器</h3>
+          <p>拖动图片位置并缩放，生成更合适的圆形头像。</p>
+        </div>
+        <button class="avatar-cropper-close" type="button" id="avatarCropperCloseBtn" aria-label="关闭裁剪器">✕</button>
+      </div>
+      <div class="avatar-cropper-body">
+        <div class="avatar-cropper-stage" id="avatarCropperStage">
+          <canvas class="avatar-cropper-canvas" id="avatarCropperCanvas" width="420" height="420"></canvas>
+          <div class="avatar-cropper-mask"></div>
+        </div>
+        <div class="avatar-cropper-side">
+          <div class="avatar-cropper-preview-wrap">
+            <span>裁剪预览</span>
+            <div class="avatar-cropper-preview" id="avatarCropperPreview"></div>
+          </div>
+          <div class="avatar-cropper-field">
+            <label for="avatarCropperScale">缩放</label>
+            <input id="avatarCropperScale" class="avatar-cropper-range" type="range" min="1" max="3" step="0.01" value="1.2">
+          </div>
+          <div class="avatar-cropper-tip">提示：按住画布拖动图片位置，松手后可预览最终头像效果。</div>
+        </div>
+      </div>
+      <div class="avatar-cropper-actions">
+        <button class="profile-cta-btn profile-cta-ghost" type="button" id="avatarCropperResetBtn">重置</button>
+        <button class="profile-cta-btn profile-cta-ghost" type="button" id="avatarCropperCancelBtn">取消</button>
+        <button class="profile-cta-btn profile-cta-primary" type="button" id="avatarCropperApplyBtn">确认裁剪</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/background.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+
+</html>

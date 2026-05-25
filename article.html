@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="文章详情">
+  <title>文章 - 我的博客</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="site-brand" href="index.html">My Blog</a>
+      <nav class="site-nav-wrap" aria-label="主导航">
+        <ul class="site-nav">
+          <li><a href="index.html">首页</a></li>
+          <li><a href="code.html">主页面</a></li>
+          <li><a href="video.html">视频</a></li>
+          <li><a href="about.html">关于</a></li>
+        </ul>
+        <a class="nav-auth" id="navAuthLink" href="code.html" title="前往主页面查看登录详情">
+          <span class="nav-login-avatar" id="navLoginAvatar">JG</span>
+          <span class="nav-login-text" id="navLoginText">登录</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="article-detail">
+      <div class="container">
+        <a class="back-link" href="index.html">&#8592; 返回首页</a>
+        <div id="article-content">
+          <!-- JS 动态渲染 -->
+        </div>
+        <div class="article-nav">
+          <a href="index.html">&#8592; 回到文章列表</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 My Blog. 简单记录，安静写字。</p>
+  </footer>
+
+  <script src="js/background.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

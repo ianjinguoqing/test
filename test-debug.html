@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Debug Test</title>
+  <style>
+    body { background: #0a0b14; color: white; padding: 20px; }
+    .test { padding: 20px; margin: 10px; background: rgba(255,255,255,0.1); }
+  </style>
+</head>
+<body>
+  <h1>Debug Test</h1>
+  <div class="test" id="test1">Test 1: Page loaded</div>
+  <div class="test" id="test2">Test 2: Waiting for script...</div>
+  <div class="test" id="test3">Test 3: Waiting for script...</div>
+
+  <script>
+    console.log('Script started');
+    document.getElementById('test2').textContent = 'Test 2: Script executed!';
+
+    // Test if code.html script works
+    var testDiv = document.getElementById('test3');
+    setTimeout(function() {
+      testDiv.textContent = 'Test 3: setTimeout works!';
+      console.log('setTimeout executed');
+    }, 100);
+
+    console.log('Script completed');
+  </script>
+
+  <iframe src="code.html" style="width:100%; height:600px; border:1px solid white; margin-top:20px;"></iframe>
+</body>
+</html>
